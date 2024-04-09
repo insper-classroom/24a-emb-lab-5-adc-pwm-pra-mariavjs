@@ -28,7 +28,7 @@ int dead_zone(int input) {
     int rescaled2 = (rescaled * 255) / 2047;
 
     // Apply dead zone
-    if (rescaled2 > -30 && rescaled2 < 30) {
+    if (rescaled2 > -170 && rescaled2 < 170) {
         return 0;
     } else {
         return rescaled2;
@@ -53,13 +53,17 @@ void x_task(void *p) {
     adc_init();
 
     // Make sure GPIO is high-impedance, no pullups etc
-    adc_gpio_init(28);
-    // Select ADC input 1 (GPIO27)
-    adc_select_input(2);
+   
+
     
     while (1) {
+         adc_gpio_init(28);
+        // Select ADC input 1 (GPIO27)
+    
+        adc_select_input(2);
         
         int x_read = adc_read();
+        
         struct adc x = {0,x_read};
         
         xQueueSend(xQueueAdc, &x, portMAX_DELAY);
@@ -70,13 +74,15 @@ void x_task(void *p) {
 void y_task(void *p) {
     adc_init();
 
-    // Make sure GPIO is high-impedance, no pullups etc
-    adc_gpio_init(27);
-    // Select ADC input 1 (GPIO27)
-    adc_select_input(1);
+    
     
     
     while (1) {
+        // Make sure GPIO is high-impedance, no pullups etc
+        adc_gpio_init(27);
+    // Select ADC input 1 (GPIO27)
+    
+        adc_select_input(1);
         int y_read = adc_read();
         struct adc y = {1,y_read};
 
