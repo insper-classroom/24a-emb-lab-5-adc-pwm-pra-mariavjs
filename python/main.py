@@ -9,6 +9,8 @@ device = uinput.Device([
     uinput.BTN_RIGHT,
     uinput.REL_X,
     uinput.REL_Y,
+    uinput.KEY_SPACE,
+    uinput.KEY_H
 ])
 
 

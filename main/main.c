@@ -57,10 +57,10 @@ void x_task(void *p) {
 
     
     while (1) {
-         adc_gpio_init(28);
+         adc_gpio_init(27);
         // Select ADC input 1 (GPIO27)
     
-        adc_select_input(2);
+        adc_select_input(1);
         
         int x_read = adc_read();
         
@@ -79,10 +79,10 @@ void y_task(void *p) {
     
     while (1) {
         // Make sure GPIO is high-impedance, no pullups etc
-        adc_gpio_init(27);
+        adc_gpio_init(26);
     // Select ADC input 1 (GPIO27)
     
-        adc_select_input(1);
+        adc_select_input(0);
         int y_read = adc_read();
         struct adc y = {1,y_read};
 
